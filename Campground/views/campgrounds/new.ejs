@@ -1,0 +1,67 @@
+<% layout('./layouts/layout') %>
+<div class="row mb-4">
+    <h1 class="text-center mb-4">New Campground</h1>
+    <div class="col-4 offset-4">
+        <form action="/campgrounds" method="POST" novalidate class="needs-validation">
+            <div class = "mb-3">
+                <label class="form-label fs-6" for="title">Title<sup class="text-danger">*</sup></label>
+                <input class="form-control" type="text" id="title" name="campground[title]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Title is required!
+                  </div>
+            </div>
+            <div class = "mb-3">
+                <label class="form-label fs-6" for="location">Location<sup class="text-danger">*</sup></label>
+                <input class="form-control" type="text" id="location" name="campground[location]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Location is required!
+                  </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fs-6" for="image">Campground Price<sup class="text-danger">*</sup></label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">$</span>
+                    <input type="text" class="form-control" id="price" placeholder="0.00" name="campground[price]" required> 
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                    <div class="invalid-feedback">
+                        Price is required!
+                    </div>
+                </div>
+                
+            </div>
+            <div class = "mb-3">
+                <label class="form-label fs-6" for="image">Image Url<sup class="text-danger">*</sup></label>
+                <input class="form-control" type="text" id="image" name="campground[image]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                <div class="invalid-feedback">
+                    Image must be uploaded!
+                </div>
+            </div>
+            <div class = "mb-4">
+                <label class="form-label fs-6" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description" name="campground[description]"></textarea>
+                <div class="valid-feedback">
+                    It will be better if write description!
+                  </div>
+            </div>
+            <div class="row justify-content-around">
+                <button class=" col-5 btn btn-success" type="submit">Add Campground</button>
+                <a class=" col-5 btn btn-secondary" href="/campgrounds">Cancel</a>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+
+

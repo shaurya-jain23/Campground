@@ -1,0 +1,35 @@
+<% layout('layouts/layout') %>
+<h1>Login</h1>
+<div class="col-4 mt-4">
+    <form action="/login" class="needs-validation" method="post" novalidate>
+        <div class = "mb-3">
+            <label class="form-label fs-6" for="username">Username<sup class="text-danger">*</sup></label>
+            <input class="form-control" type="text" id="username" name="user[username]" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                username is required!
+              </div>
+        </div>
+        
+        <div class = "mb-3">
+            <label class="form-label fs-6" for="password">Password<sup class="text-danger">*</sup></label>
+            <input class="form-control" type="password" id="password" name="user[password]" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                password is required!
+              </div>
+        </div>
+    
+        <div class="row justify-content-around">
+            <button class=" col-5 btn btn-success" type="submit">Login</button>
+            <a class=" col-5 btn btn-secondary" href="/campgrounds">Cancel</a>
+        </div>
+    </form>
+    <div class="mt-2 justify-content">
+        If you are not registered user <span><a href="/register">Sign up</a></span> 
+    </div>
+</div>

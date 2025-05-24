@@ -2,7 +2,7 @@
 <div class="row">
     <h1 class="text-center mb-4">Update Campground</h1>
     <div class="col-4 offset-4">
-        <form action="/campgrounds/<%=campground._id %>?_method=PUT" method="POST" novalidate class="needs-validation">
+        <form action="/campgrounds/<%=campground._id %>?_method=PUT" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
             <div class = "mb-3">
                 <label class="form-label fs-6" for="title">Title<sup class="text-danger">*</sup></label>
                 <input class="form-control" type="text" id="title" name="campground[title]" value="<%=campground.title %>" required>
@@ -37,14 +37,7 @@
                 </div>
             </div>
             <div class = "mb-3">
-                <label class="form-label fs-6" for="image">Image Url<sup class="text-danger">*</sup></label>
-                <input class="form-control" type="text" id="image" name="campground[image]" value="<%=campground.image %>" required>
-                <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                  <div class="invalid-feedback">
-                    Image url is required!
-                  </div>
+                <input type="file" name="image" id="image" multiple>
             </div>
             <div class = "mb-4">
                 <label class="form-label fs-6" for="description">Description</label>

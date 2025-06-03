@@ -1,8 +1,8 @@
 <% layout('./layouts/layout') %>
 <div class="row">
     <h1 class="text-center mb-4">Update Campground</h1>
-    <div class="col-4 offset-4">
-        <form action="/campgrounds/<%=campground._id %>?_method=PUT" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+    <div class="col-6 offset-3">
+        <form action="/campgrounds/<%=campground._id %>?_method=PUT" method="POST" novalidate class="needs-validation edit-form" enctype="multipart/form-data">
             <div class = "mb-3">
                 <label class="form-label fs-6" for="title">Title<sup class="text-danger">*</sup></label>
                 <input class="form-control" type="text" id="title" name="campground[title]" value="<%=campground.title %>" required>
@@ -36,19 +36,35 @@
                   </div>
                 </div>
             </div>
-            <div class = "mb-3">
-                <input type="file" name="image" id="image" multiple>
-            </div>
             <div class = "mb-4">
-                <label class="form-label fs-6" for="description">Description</label>
-                <textarea class="form-control" type="text" id="description" name="campground[description]"><%=campground.description %></textarea>
-                <div class="valid-feedback">
-                    Its better to write description!
-                </div>
+              <label class="form-label fs-6" for="description">Description</label>
+              <textarea class="form-control" type="text" id="description" name="campground[description]"><%=campground.description %></textarea>
+              <div class="valid-feedback">
+                Its better to write description!
+              </div>
+            </div>
+            <div>
+              <label for="deleteImages[]">Existing Images</label>
+              <div id="existing-images">
+                  <% campground.images.forEach((img, index) => { %>
+                      <div class="image-box" data-filename="<%= img.filename %>">
+                          <img src="<%= img.thumbnail %>" class="preview-img img-thumbnail" />
+                          <button type="button" class="delete-btn" data-filename="<%= img.filename %>">&#x2715;</button>
+                      </div>
+                  <% }) %>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="image" class="mb-3">Add New Images</label>
+              <div id="drop-area" class="upload-area">
+                <input type="file" id="image-upload" name="image" multiple hidden />
+                <h6>Drag & Drop images here or click to browse </h6>
+                <div id="preview-area"></div>
+              </div>
             </div>
             <div class="row justify-content-around mb-4">
-                <button class=" col-5 btn btn-success" type="submit">Update Campground</button>
-                <a class=" col-5 btn btn-secondary" href="/campgrounds/<%=campground._id %>">Cancel</a>
+              <button class=" col-5 btn btn-success" type="submit">Update Campground</button>
+              <a class=" col-5 btn btn-secondary" href="/campgrounds/<%=campground._id %>">Cancel</a>
             </div>
             
         </form>

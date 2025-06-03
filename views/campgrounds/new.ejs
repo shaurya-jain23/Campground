@@ -1,7 +1,7 @@
 <% layout('./layouts/layout') %>
 <div class="row mb-4">
     <h1 class="text-center mb-4">New Campground</h1>
-    <div class="col-4 offset-4">
+    <div class="col-6 offset-3">
         <form action="/campgrounds" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
             <div class = "mb-3">
                 <label class="form-label fs-6" for="title">Title<sup class="text-danger">*</sup></label>
@@ -23,7 +23,7 @@
                     Location is required!
                   </div>
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
                 <label class="form-label fs-6" for="image">Campground Price<sup class="text-danger">*</sup></label>
                 <div class="input-group">
                     <span class="input-group-text" id="price-label">$</span>
@@ -35,18 +35,18 @@
                         Price is required!
                     </div>
                 </div>
-                
             </div>
-            <input type="file" name="image" id="image" multiple>
-            <!-- <div class = "mb-3">
-                <label class="form-label fs-6" for="image">Image Url<sup class="text-danger">*</sup></label>
-                <input class="form-control" type="text" id="image" name="campground[image]" required>
-                <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                <div class="invalid-feedback">
-                    Image must be uploaded!
-                </div>
+            <div class="mb-3">
+              <label for="image" class="mb-3">Upload Images</label>
+              <div id="drop-area" class="upload-area">
+                <input type="file" id="image-upload" name="image" multiple hidden />
+                <h6>Drag & Drop images here or click to browse </h6>
+                <div id="preview-area"></div>
+              </div>
+            </div>
+            <!-- <div class="input-group mb-3">
+                <input type="file" class="form-control" id="image" name="image" multiple>
+                <label class="input-group-text" for="image">Upload</label>
             </div> -->
             <div class = "mb-4">
                 <label class="form-label fs-6" for="description">Description</label>

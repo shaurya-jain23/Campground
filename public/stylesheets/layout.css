@@ -1,0 +1,52 @@
+.preview-img {
+    height: 100px;
+    margin: 5px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.image-box {
+    display: inline-block;
+    position: relative;
+    margin: 10px;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.upload-area {
+    border: 2px dashed #007bff;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    background-color: #f0f8ff;
+    cursor: pointer;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.upload-area.dragover {
+    background-color: #e0f0ff;
+    border-color: #0056b3;
+}
+
+#preview-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+#preview-area img {
+    height: 100px;
+    border-radius: 5px;
+    object-fit: cover;
+}

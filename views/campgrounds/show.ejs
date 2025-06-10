@@ -3,6 +3,7 @@
 
 <div class="row mb-4">
     <div class="col-6">
+      <div id='map' style='width: 400px; height: 300px;'></div>
       <div id="campgroundCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
           <% campground.images.forEach((img, i)=>{ %>
@@ -91,7 +92,19 @@
             <%}%>
         </div>
       </div>
-
     </div>
 </div>
 
+<script>
+  mapboxgl.accessToken = '<%-process.env.MAPBOX_TOKEN%>';
+  const campground = <%- JSON.stringify(campground) %>;
+  const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v12', // style URL
+    center: campground.geometry.coordinates, // starting position [lng, lat]
+    zoom: 9, // starting zoom
+  });
+  new mapboxgl.Marker()
+    .setLngLat(campground.geometry.coordinates)
+    .addTo(map)
+</script>

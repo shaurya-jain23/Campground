@@ -28,6 +28,7 @@ const seedDB = async ()=>{
             author: '682e1213881a4530a150329c',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, voluptatem. Nesciunt, voluptates. Quos, quod. Quisquam quidem, iure, quos, voluptates, doloremque nesciunt quas voluptatem tempora quibusdam autem. Quisquam, quos. Quisquam, quos.',
             price,
+            geometry: {"type": "Point", "coordinates": [-113.1331, 47.0202]},
             images: [
                         {
                             url: 'https://res.cloudinary.com/doykrr6zz/image/upload/v1748064660/YelpCamp/llqx7w1uod6gfzdqxn5h.jpg',

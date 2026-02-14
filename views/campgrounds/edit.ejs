@@ -1,73 +1,77 @@
 <% layout('./layouts/layout') %>
-<div class="row">
-    <h1 class="text-center mb-4">Update Campground</h1>
-    <div class="col-6 offset-3">
-        <form action="/campgrounds/<%=campground._id %>?_method=PUT" method="POST" novalidate class="needs-validation edit-form" enctype="multipart/form-data">
-            <div class = "mb-3">
-                <label class="form-label fs-6" for="title">Title<sup class="text-danger">*</sup></label>
-                <input class="form-control" type="text" id="title" name="campground[title]" value="<%=campground.title %>" required>
-                <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                  <div class="invalid-feedback">
-                    Title is required!
-                  </div>
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                <h2 class="text-center fw-bold mb-4">Update Campground</h2>
+                
+                <form action="/campgrounds/<%=campground._id %>?_method=PUT" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="title">Title</label>
+                        <input class="form-control bg-light" type="text" id="title" name="campground[title]" value="<%=campground.title %>" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Title is required!</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="location">Location</label>
+                        <input class="form-control bg-light" type="text" id="location" name="campground[location]" value="<%=campground.location %>" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Location is required!</div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold" for="price">Campground Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light">$</span>
+                            <input type="number" class="form-control bg-light" id="price" placeholder="0.00" name="campground[price]" value="<%=campground.price %>" min="0" step="0.01" required> 
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Valid price is required!</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold" for="description">Description</label>
+                        <textarea class="form-control bg-light" type="text" id="description" name="campground[description]" rows="4"><%=campground.description %></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Add New Images</label>
+                        <div id="drop-area" class="upload-area bg-light border-dashed">
+                            <input type="file" id="image-upload" name="image" multiple hidden />
+                            <i class="bi bi-cloud-arrow-up-fill fs-1 text-primary mb-2"></i>
+                            <h6 class="text-secondary">Drag & Drop images here or click to browse</h6>
+                            <div id="preview-area" class="d-flex flex-wrap justify-content-center gap-2 mt-3"></div>
+                        </div>
+                    </div>
+
+                    <% if(campground.images.length > 0) { %>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Manage Existing Images</label>
+                        <div class="d-flex flex-wrap gap-2">
+                            <% campground.images.forEach((img, i) => { %>
+                                <div class="image-box position-relative">
+                                    <img src="<%= img.thumbnail %>" class="preview-img img-thumbnail rounded-3" />
+                                    <div class="form-check position-absolute top-0 end-0 m-1">
+                                        <input class="form-check-input border-danger bg-light" type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+                                    </div>
+                                    <label class="delete-btn" for="image-<%=i%>" title="Delete Image">
+                                        <i class="bi bi-trash"></i>
+                                    </label>
+                                </div>
+                            <% }) %>
+                        </div>
+                        <div class="form-text text-muted">Select images to delete on update.</div>
+                    </div>
+                    <% } %>
+                    
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary btn-lg rounded-pill fw-bold" type="submit">Update Campground</button>
+                        <a class="btn btn-light rounded-pill border" href="/campgrounds/<%=campground._id %>">Cancel</a>
+                    </div>
+                </form>
             </div>
-            <div class = "mb-3">
-                <label class="form-label fs-6" for="location">Location<sup class="text-danger">*</sup></label>
-                <input class="form-control" type="text" id="location" name="campground[location]" value="<%=campground.location %>" required>
-                <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                  <div class="invalid-feedback">
-                    Location is required!
-                  </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label fs-6" for="image">Campground Price<sup class="text-danger">*</sup></label>
-                <div class="input-group">
-                    <span class="input-group-text" id="price-label">$</span>
-                    <input type="text" class="form-control" id="price" placeholder="0.00" name="campground[price]" value="<%=campground.price %>" required> 
-                    <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                  <div class="invalid-feedback">
-                    Price is required!
-                  </div>
-                </div>
-            </div>
-            <div class = "mb-4">
-              <label class="form-label fs-6" for="description">Description</label>
-              <textarea class="form-control" type="text" id="description" name="campground[description]"><%=campground.description %></textarea>
-              <div class="valid-feedback">
-                Its better to write description!
-              </div>
-            </div>
-            <div>
-              <label for="deleteImages[]">Existing Images</label>
-              <div id="existing-images">
-                  <% campground.images.forEach((img, index) => { %>
-                      <div class="image-box" data-filename="<%= img.filename %>">
-                          <img src="<%= img.thumbnail %>" class="preview-img img-thumbnail" />
-                          <button type="button" class="delete-btn" data-filename="<%= img.filename %>">&#x2715;</button>
-                      </div>
-                  <% }) %>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="image" class="mb-3">Add New Images</label>
-              <div id="drop-area" class="upload-area">
-                <input type="file" id="image-upload" name="image" multiple hidden />
-                <h6>Drag & Drop images here or click to browse </h6>
-                <div id="preview-area"></div>
-              </div>
-            </div>
-            <div class="row justify-content-around mb-4">
-              <button class=" col-5 btn btn-success" type="submit">Update Campground</button>
-              <a class=" col-5 btn btn-secondary" href="/campgrounds/<%=campground._id %>">Cancel</a>
-            </div>
-            
-        </form>
+        </div>
     </div>
 </div>
 <script src="/javascripts/campgroundForms.js"></script>

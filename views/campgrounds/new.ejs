@@ -1,68 +1,119 @@
 <% layout('./layouts/layout') %>
-<div class="row mb-4">
-    <h1 class="text-center mb-4">New Campground</h1>
-    <div class="col-6 offset-3">
-        <form action="/campgrounds" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
-            <div class = "mb-3">
-                <label class="form-label fs-6" for="title">Title<sup class="text-danger">*</sup></label>
-                <input class="form-control" type="text" id="title" name="campground[title]" required>
-                <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                  <div class="invalid-feedback">
-                    Title is required!
-                  </div>
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow border-0 rounded-4">
+      <div class="card-body p-5">
+        <h2 class="text-center fw-bold mb-4">New Campground</h2>
+
+        <form
+          action="/campgrounds"
+          method="POST"
+          novalidate
+          class="needs-validation"
+          enctype="multipart/form-data"
+        >
+          <div class="mb-3">
+            <label class="form-label fw-semibold" for="title">Title</label>
+            <input
+              class="form-control bg-light"
+              type="text"
+              id="title"
+              name="campground[title]"
+              required
+              placeholder="e.g. Pine Creek"
+            />
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Title is required!</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold" for="location"
+              >Location</label
+            >
+            <input
+              class="form-control bg-light"
+              type="text"
+              id="location"
+              name="campground[location]"
+              required
+              placeholder="e.g. Yosemite National Park, CA"
+            />
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Location is required!</div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold" for="price"
+              >Campground Price</label
+            >
+            <div class="input-group">
+              <span class="input-group-text bg-light">$</span>
+              <input
+                type="number"
+                class="form-control bg-light"
+                id="price"
+                placeholder="0.00"
+                name="campground[price]"
+                min="0"
+                step="0.01"
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Valid price is required!</div>
             </div>
-            <div class = "mb-3">
-                <label class="form-label fs-6" for="location">Location<sup class="text-danger">*</sup></label>
-                <input class="form-control" type="text" id="location" name="campground[location]" required>
-                <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                  <div class="invalid-feedback">
-                    Location is required!
-                  </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="image" class="form-label fw-semibold"
+              >Upload Images</label
+            >
+            <div id="drop-area" class="upload-area bg-light border-dashed">
+              <input
+                type="file"
+                id="image-upload"
+                name="image"
+                multiple
+                hidden
+              />
+              <i class="bi bi-cloud-arrow-up-fill fs-1 text-primary mb-2"></i>
+              <h6 class="text-secondary">
+                Drag & Drop images here or click to browse
+              </h6>
+              <div
+                id="preview-area"
+                class="d-flex flex-wrap justify-content-center gap-2 mt-3"
+              ></div>
             </div>
-            <div class="mb-4">
-                <label class="form-label fs-6" for="image">Campground Price<sup class="text-danger">*</sup></label>
-                <div class="input-group">
-                    <span class="input-group-text" id="price-label">$</span>
-                    <input type="text" class="form-control" id="price" placeholder="0.00" name="campground[price]" required> 
-                    <div class="valid-feedback">
-                        Looks good!
-                      </div>
-                    <div class="invalid-feedback">
-                        Price is required!
-                    </div>
-                </div>
-            </div>
-            <div class="mb-3">
-              <label for="image" class="mb-3">Upload Images</label>
-              <div id="drop-area" class="upload-area">
-                <input type="file" id="image-upload" name="image" multiple hidden />
-                <h6>Drag & Drop images here or click to browse </h6>
-                <div id="preview-area"></div>
-              </div>
-            </div>
-            <!-- <div class="input-group mb-3">
-                <input type="file" class="form-control" id="image" name="image" multiple>
-                <label class="input-group-text" for="image">Upload</label>
-            </div> -->
-            <div class = "mb-4">
-                <label class="form-label fs-6" for="description">Description</label>
-                <textarea class="form-control" type="text" id="description" name="campground[description]"></textarea>
-                <div class="valid-feedback">
-                    It will be better if write description!
-                  </div>
-            </div>
-            <div class="row justify-content-around">
-                <button class=" col-5 btn btn-success" type="submit">Add Campground</button>
-                <a class=" col-5 btn btn-secondary" href="/campgrounds">Cancel</a>
-            </div>
-            
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold" for="description"
+              >Description</label
+            >
+            <textarea
+              class="form-control bg-light"
+              type="text"
+              id="description"
+              name="campground[description]"
+              rows="4"
+              placeholder="Tell us about the campground..."
+            ></textarea>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button
+              class="btn btn-success btn-lg rounded-pill fw-bold"
+              type="submit"
+            >
+              Add Campground
+            </button>
+            <a class="btn btn-light rounded-pill border" href="/campgrounds"
+              >Cancel</a
+            >
+          </div>
         </form>
+      </div>
     </div>
+  </div>
 </div>
 <script src="/javascripts/campgroundForms.js"></script>
-
-

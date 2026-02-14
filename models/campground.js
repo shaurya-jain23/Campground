@@ -14,6 +14,8 @@ ImageSchema.virtual('show').get(function(){
     return this.url.replace('/upload', '/upload/w_500')
 })
 
+const opts = { toJSON: { virtuals: true } };
+
 const CampgroundSchema = new Schema({
     title: String,
     price: Number,
@@ -41,6 +43,10 @@ const CampgroundSchema = new Schema({
             ref: 'Review'
         }
     ]
+}, opts)
+
+CampgroundSchema.virtual('properties.popUpMarkup').get(function(){
+    return `<h5>${this.title}</h5><p>${this.location}</p><a href="/campgrounds/${this._id}">View Campground</a>`
 })
 
 CampgroundSchema.post('findOneAndDelete', async function(campground){

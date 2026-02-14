@@ -25,7 +25,7 @@ app.use(express.urlencoded({extended: true})); //for access req.body
 app.use(methodOverride('_method'));
 
 const sessionConfig = {
-    secret: 'holabolabolahala',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -57,7 +57,7 @@ const reviewRoutes = require('./routes/reviews')
 const userRoutes = require('./routes/users')
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
+mongoose.connect(process.env.MONGODB_URI, {
     // useNewUrlParser: true,
     // useCreateIndex: true,
     // useUnifiedTopology: true
@@ -88,6 +88,6 @@ app.use((err, req, res, next)=>{
     res.status(statusCode).render('error', {err});
 })
 
-app.listen(3000, ()=>{
+app.listen(process.env.PORT || 3000, ()=>{
     console.log("Live on Port 3000");
 })

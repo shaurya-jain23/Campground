@@ -1,52 +1,119 @@
 <% layout('layouts/layout') %>
-<h1>Register</h1>
-<div class="col-4 mt-4">
-    <form action="/register" class="needs-validation" method="post" novalidate>
-        <div class = "mb-3">
-            <label class="form-label fs-6" for="name">Full Name<sup class="text-danger">*</sup></label>
-            <input class="form-control" type="text" id="name" name="user[name]" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                name is required!
-              </div>
+
+<div
+  class="row align-items-center justify-content-center"
+  style="min-height: 80vh"
+>
+  <div class="col-md-6 col-lg-5">
+    <div
+      class="card shadow border-0 rounded-4 animate__animated animate__fadeInDown"
+    >
+      <div class="card-body p-5">
+        <div class="text-center mb-4">
+          <i class="bi bi-person-plus-fill text-primary display-4"></i>
+          <h2 class="fw-bold mt-2">Create Account</h2>
+          <p class="text-secondary">Join YelpCamp today</p>
         </div>
-        <div class = "mb-3">
-            <label class="form-label fs-6" for="email">Email id<sup class="text-danger">*</sup></label>
-            <input class="form-control" type="email" id="email" name="user[email]" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                email is required!
-              </div>
-        </div>
-        <div class = "mb-3">
-            <label class="form-label fs-6" for="username">Username<sup class="text-danger">*</sup></label>
-            <input class="form-control" type="text" id="username" name="user[username]" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                username is required!
-              </div>
-        </div>
-        
-        <div class = "mb-3">
-            <label class="form-label fs-6" for="password">Password<sup class="text-danger">*</sup></label>
-            <input class="form-control" type="password" id="password" name="user[password]" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-              <div class="invalid-feedback">
-                password is required!
-              </div>
-        </div>
-    
-        <div class="row justify-content-around">
-            <button class=" col-5 btn btn-success" type="submit">Register</button>
-            <a class=" col-5 btn btn-secondary" href="/campgrounds">Cancel</a>
-        </div>
-    </form>
+
+        <form
+          action="/register"
+          class="needs-validation"
+          method="post"
+          novalidate
+        >
+          <div class="mb-3">
+            <label class="form-label fw-semibold" for="name">Full Name</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light border-end-0"
+                ><i class="bi bi-person-badge"></i
+              ></span>
+              <input
+                class="form-control border-start-0 ps-0 bg-light"
+                type="text"
+                id="name"
+                name="user[name]"
+                required
+                placeholder="John Doe"
+              />
+              <div class="invalid-feedback">Name is required</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold" for="email"
+              >Email Address</label
+            >
+            <div class="input-group">
+              <span class="input-group-text bg-light border-end-0"
+                ><i class="bi bi-envelope"></i
+              ></span>
+              <input
+                class="form-control border-start-0 ps-0 bg-light"
+                type="email"
+                id="email"
+                name="user[email]"
+                required
+                placeholder="john@example.com"
+              />
+              <div class="invalid-feedback">Valid email is required</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold" for="username"
+              >Username</label
+            >
+            <div class="input-group">
+              <span class="input-group-text bg-light border-end-0"
+                ><i class="bi bi-person"></i
+              ></span>
+              <input
+                class="form-control border-start-0 ps-0 bg-light"
+                type="text"
+                id="username"
+                name="user[username]"
+                required
+                placeholder="username"
+              />
+              <div class="invalid-feedback">Username is required</div>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold" for="password"
+              >Password</label
+            >
+            <div class="input-group">
+              <span class="input-group-text bg-light border-end-0"
+                ><i class="bi bi-lock"></i
+              ></span>
+              <input
+                class="form-control border-start-0 ps-0 bg-light"
+                type="password"
+                id="password"
+                name="user[password]"
+                required
+                placeholder="••••••••"
+              />
+              <div class="invalid-feedback">Password is required</div>
+            </div>
+          </div>
+
+          <div class="d-grid mb-3">
+            <button
+              class="btn btn-primary btn-lg rounded-pill fw-bold"
+              type="submit"
+            >
+              Sign Up
+            </button>
+          </div>
+
+          <p class="text-center text-secondary mb-0">
+            Already have an account?
+            <a href="/login" class="text-decoration-none fw-semibold">Login</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
